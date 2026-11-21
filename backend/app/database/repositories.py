@@ -1,6 +1,6 @@
 from uuid import UUID
 
-from sqlmodel import select
+from sqlmodel import col, select
 
 from app.database.abstract_repository import AbstractRepository
 from app.database.engine import get_db_session
@@ -41,7 +41,7 @@ class CommandHistoryRepository(AbstractRepository[CommandHistory, UUID]):
                     await session.exec(
                         select(CommandHistory)
                         .where(CommandHistory.command_id == command_id)
-                        .order_by(CommandHistory.created_at.desc())
+                        .order_by(col(CommandHistory.created_at).desc())
                     )
                 ).all()
             )

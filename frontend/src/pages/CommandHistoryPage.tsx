@@ -35,6 +35,8 @@ function CommandHistoryPage() {
       />
 
       {isError && <p className="mb-6">No history found for this command.</p>}
+      {isLoading && <p className="mb-6">Loading...</p>}
+
       <Table data={data ?? []} columns={columns} />
     </div>
   );
